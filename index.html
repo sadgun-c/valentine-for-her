@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>For You ❤️</title>
+<style>
+body {
+    margin:0;
+    padding:0;
+    font-family: 'Segoe UI', sans-serif;
+    text-align:center;
+    background: linear-gradient(to right, #ff758c, #ff7eb3);
+    color:white;
+    overflow:hidden;
+}
+
+.container {
+    margin-top:100px;
+    padding:20px;
+}
+
+h1 {
+    font-size:50px;
+}
+
+.letter {
+    width:70%;
+    margin:auto;
+    font-size:20px;
+    line-height:1.6;
+}
+
+button {
+    padding:12px 25px;
+    font-size:18px;
+    border:none;
+    border-radius:25px;
+    background:white;
+    color:#ff4d6d;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+.hidden {
+    display:none;
+}
+
+.heart {
+    position:fixed;
+    color:white;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    from { transform: translateY(100vh); }
+    to { transform: translateY(-10vh); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Happy Valentine's Day ❤️</h1>
+
+    <div class="letter">
+        Dear [SALANKATIA],<br><br>
+
+        No matter how complicated things became,
+        my feelings for you never really disappeared.  
+
+        You were never just a chapter.
+        You were a beautiful part of my story.  
+
+        Today I just want to say —
+        I still care.
+        I still respect you.
+        And somewhere in my heart… I still choose you. ❤️
+    </div>
+
+    <button onclick="showMessage()">Click for Something Special 💖</button>
+
+    <div id="secret" class="hidden">
+        <h2>You Still Mean So Much To Me 🌹</h2>
+        <p>Whatever happens, I’ll always wish the best for you.</p>
+    </div>
+</div>
+
+<script>
+function showMessage() {
+    document.getElementById("secret").style.display = "block";
+}
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 20 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+setInterval(createHeart, 500);
+</script>
+
+</body>
+</html>

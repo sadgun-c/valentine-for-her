@@ -1,110 +1,230 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>For You ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 💛</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+
 <style>
 body {
-    margin:0;
-    padding:0;
-    font-family: 'Segoe UI', sans-serif;
-    text-align:center;
-    background: linear-gradient(to right, #ff758c, #ff7eb3);
-    color:white;
-    overflow:hidden;
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+    overflow-x: hidden;
+    background: linear-gradient(-45deg, #fdf6e3, #fff8dc, #fefae0, #fff3b0);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
 }
 
-.container {
-    margin-top:100px;
-    padding:20px;
+@keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
 }
 
-h1 {
-    font-size:50px;
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Envelope */
+.envelope {
+    width: 280px;
+    height: 180px;
+    background: #f5deb3;
+    position: relative;
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+.flap {
+    width: 100%;
+    height: 100%;
+    background: #e6c79c;
+    position: absolute;
+    transform-origin: top;
+    transition: transform 1s ease;
+}
+
+.open .flap {
+    transform: rotateX(180deg);
 }
 
 .letter {
-    width:70%;
-    margin:auto;
-    font-size:20px;
-    line-height:1.6;
+    display: none;
+    padding: 30px;
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+    animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 2rem;
+    color: #d4a017;
+    text-shadow: 0 0 10px rgba(212,160,23,0.5);
 }
 
 button {
-    padding:12px 25px;
-    font-size:18px;
-    border:none;
-    border-radius:25px;
-    background:white;
-    color:#ff4d6d;
-    cursor:pointer;
-    margin-top:20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background: #ffd166;
+    cursor: pointer;
+    margin: 10px;
+    font-weight: bold;
 }
 
-.hidden {
-    display:none;
-}
-
-.heart {
-    position:fixed;
-    color:white;
-    animation: float 5s linear infinite;
+.pets {
+    position: fixed;
+    font-size: 24px;
+    animation: float 10s linear infinite;
 }
 
 @keyframes float {
-    from { transform: translateY(100vh); }
-    to { transform: translateY(-10vh); }
+    from {transform: translateY(100vh);}
+    to {transform: translateY(-10vh);}
+}
+
+#heartFollower {
+    position: fixed;
+    pointer-events: none;
+    font-size: 20px;
+}
+
+.sparkle {
+    position: fixed;
+    font-size: 12px;
+    animation: sparkleMove 5s linear infinite;
+}
+
+@keyframes sparkleMove {
+    from {transform: translateY(100vh);}
+    to {transform: translateY(-10vh);}
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-    <h1>Happy Valentine's Day ❤️</h1>
-
-    <div class="letter">
-        Dear [SALANKATIA],<br><br>
-
-        No matter how complicated things became,
-        my feelings for you never really disappeared.  
-
-        You were never just a chapter.
-        You were a beautiful part of my story.  
-
-        Today I just want to say —
-        I still care.
-        I still respect you.
-        And somewhere in my heart… I still choose you. ❤️
-    </div>
-
-    <button onclick="showMessage()">Click for Something Special 💖</button>
-
-    <div id="secret" class="hidden">
-        <h2>You Still Mean So Much To Me 🌹</h2>
-        <p>Whatever happens, I’ll always wish the best for you.</p>
+<div class="center" id="envelopeContainer">
+    <div class="envelope" onclick="openLetter()">
+        <div class="flap"></div>
     </div>
 </div>
 
+<div class="letter" id="letter">
+    <h1>Hi My Love 💛</h1>
+    <p>
+    I don’t want to talk about the past.  
+    I want to talk about the future.  
+
+    I worked on myself.  
+    I grew. I became softer. Stronger. Better.  
+
+    Not because I had to…  
+    But because loving you made me want to be a better man.  
+
+    I still choose you.  
+    Not out of habit.  
+    But out of clarity.  
+
+    And if you ever decide to walk towards me again,  
+    I promise the version of me you meet  
+    will be someone who protects your heart like gold. 💛
+    </p>
+
+    <h3>Choose Our Instrumental 🎵</h3>
+    <button onclick="playTelugu()">Telugu 💛</button>
+    <button onclick="playEnglish()">English 💛</button>
+
+    <br><br>
+    <button onclick="finale()">Open My Heart 💌</button>
+</div>
+
+<div id="heartFollower">💛</div>
+
+<audio id="teluguSong" src="telugu.mp3" loop></audio>
+<audio id="englishSong" src="english.mp3" loop></audio>
+<audio id="heartbeat">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3a3df4a2c1.mp3">
+</audio>
+<audio id="pianoNote">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c4e6e42c76.mp3">
+</audio>
+
 <script>
-function showMessage() {
-    document.getElementById("secret").style.display = "block";
+function openLetter() {
+    document.querySelector(".envelope").classList.add("open");
+    setTimeout(()=>{
+        document.getElementById("envelopeContainer").style.display="none";
+        document.getElementById("letter").style.display="block";
+    },1000);
 }
 
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 20 + "px";
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
+function playTelugu(){
+    document.getElementById("englishSong").pause();
+    document.getElementById("teluguSong").play();
 }
 
-setInterval(createHeart, 500);
+function playEnglish(){
+    document.getElementById("teluguSong").pause();
+    document.getElementById("englishSong").play();
+}
+
+function finale(){
+    document.getElementById("heartbeat").play();
+    confettiEffect();
+}
+
+function confettiEffect(){
+    for(let i=0;i<50;i++){
+        let confetti=document.createElement("div");
+        confetti.innerHTML="✨";
+        confetti.className="sparkle";
+        confetti.style.left=Math.random()*100+"vw";
+        document.body.appendChild(confetti);
+    }
+}
+
+/* floating pets */
+setInterval(()=>{
+    let pet=document.createElement("div");
+    pet.className="pets";
+    pet.innerHTML=Math.random()>0.5?"🐶":"🐱";
+    pet.style.left=Math.random()*100+"vw";
+    document.body.appendChild(pet);
+    setTimeout(()=>pet.remove(),10000);
+},2000);
+
+/* heart follow */
+document.addEventListener("mousemove",(e)=>{
+    let heart=document.getElementById("heartFollower");
+    heart.style.left=e.pageX+"px";
+    heart.style.top=e.pageY+"px";
+});
+
+/* piano scroll */
+let lastScrollTime=0;
+window.addEventListener("scroll",function(){
+    let now=new Date().getTime();
+    if(now-lastScrollTime>1500){
+        document.getElementById("pianoNote").currentTime=0;
+        document.getElementById("pianoNote").play();
+        lastScrollTime=now;
+    }
+});
 </script>
 
 </body>
 </html>
+
